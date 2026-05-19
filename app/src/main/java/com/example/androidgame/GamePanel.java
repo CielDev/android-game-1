@@ -9,6 +9,8 @@ import android.view.SurfaceView;
 
 import androidx.annotation.NonNull;
 
+
+/// Main Game Panel
 public class GamePanel extends SurfaceView implements SurfaceHolder.Callback {
 
     private Paint redPaint = new Paint();
@@ -22,7 +24,7 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback {
 
 
 
-
+    /// This is just a test to see if we can draw something on the screen. Red square.
     @Override
     public void surfaceCreated(@NonNull SurfaceHolder surfaceHolder) {
         Canvas c = surfaceHolder.lockCanvas();

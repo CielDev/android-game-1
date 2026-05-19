@@ -16,6 +16,7 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback {
 
     private Paint redPaint = new Paint();
     private SurfaceHolder holder;
+    private float x,y;
 
     public GamePanel(Context context) {
         super(context);
@@ -24,21 +25,28 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback {
         redPaint.setColor(Color.RED);
     }
 
-    /// Checks if user touched the screen. For now, just prints to console.
+    /// Renders the red square at the current X and Y coordinates.
+    private void render(){
+        Canvas c = holder.lockCanvas();
+        c.drawColor(Color.BLACK);
+        c.drawRect(x,y,x+50,y+50,redPaint);
+
+        holder.unlockCanvasAndPost(c);
+    }
+
+    /// Updates X and Y coordinates of the red square to where the user touched the screen.
     @Override
     public boolean onTouchEvent(MotionEvent event) {
-        System.out.println("User Touch Event!");
+        x = event.getX();
+        y = event.getY();
+        render();
         return true;
     }
 
     /// This is just a test to see if we can draw something on the screen. Red square.
     @Override
     public void surfaceCreated(@NonNull SurfaceHolder surfaceHolder) {
-        Canvas c = surfaceHolder.lockCanvas();
-
-        c.drawRect(50,50,100,100,redPaint);
-
-        surfaceHolder.unlockCanvasAndPost(c);
+        render();
     }
 
     @Override
